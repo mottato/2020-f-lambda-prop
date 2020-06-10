@@ -48,9 +48,19 @@ menor unaFuncion unValor = (>(unaFuncion unValor)).unaFuncion
 --ordenarSegun (mayor length)  ["hola","mar"]
 
 --2)
-
-ubicadoEn :: [Barrio]->Depto->Bool
+--a)
+ubicadoEn :: [Barrio]->Requisito
 ubicadoEn barrios depto = elem (barrio depto) barrios
 
+--b)
 cumpleRango ::(Ord b)=>(Depto->b)->b->b->Depto->Bool
 cumpleRango unaFuncion unNumero otroNumero unDepto = between unNumero otroNumero (unaFuncion unDepto)
+
+--3)
+--a)
+cumpleBusqueda :: Depto->Busqueda->Bool
+cumpleBusqueda unDepto = all (\requisito->requisito unDepto)
+
+--b)
+buscar :: Busqueda->(Depto->Depto->Bool)->[Depto]->[Depto]
+buscar unaBusqueda unCriterio = (ordenarSegun unCriterio).filter (flip cumpleBusqueda unaBusqueda) 
