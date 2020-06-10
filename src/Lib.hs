@@ -46,3 +46,11 @@ menor unaFuncion unValor = (>(unaFuncion unValor)).unaFuncion
 --b)
 
 --ordenarSegun (mayor length)  ["hola","mar"]
+
+--2)
+
+ubicadoEn :: [Barrio]->Depto->Bool
+ubicadoEn barrios depto = elem (barrio depto) barrios
+
+cumpleRango ::(Ord b)=>(Depto->b)->b->b->Depto->Bool
+cumpleRango unaFuncion unNumero otroNumero unDepto = between unNumero otroNumero (unaFuncion unDepto)
