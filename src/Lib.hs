@@ -64,3 +64,11 @@ cumpleBusqueda unDepto = all (\requisito->requisito unDepto)
 --b)
 buscar :: Busqueda->(Depto->Depto->Bool)->[Depto]->[Depto]
 buscar unaBusqueda unCriterio = (ordenarSegun unCriterio).filter (flip cumpleBusqueda unaBusqueda) 
+
+--4)
+
+mailsDePersonasInteresadas :: Depto->[Persona]->[Mail]
+mailsDePersonasInteresadas unDepto = map mail.filter (estaInteresado unDepto) 
+
+estaInteresado :: Depto->Persona->Bool
+estaInteresado unDepto unaPersona = any (cumpleBusqueda unDepto) (busquedas unaPersona)
